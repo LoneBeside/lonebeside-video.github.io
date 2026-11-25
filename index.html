@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>ℒone།  Besidℓ</title>
+<meta name="description" content="ℒone།  Besidℓ —— 镜边的番剧放映室。上传、播放、下载、评论、点赞与收藏，视频按系列收进自己的书架。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f6efe4'/%3E%3Cpath d='M16 6c4.4 0 7 3 7 7v11H9V13c0-4 2.6-7 7-7z' fill='none' stroke='%234f6b57' stroke-width='1.6'/%3E%3Cpath d='M13.6 13.6v8l6.2-4z' fill='%23b05238'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="atmosphere">
+  <div class="wash w1"></div>
+  <div class="wash w2"></div>
+  <div class="wallpaper"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark">
+        <svg width="21" height="21" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4.6c4.9 0 7.8 3.3 7.8 7.6V28H8.2V12.2c0-4.3 2.9-7.6 7.8-7.6z" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12.6 13.4v9.2l7.4-4.6z" fill="currentColor"/>
+          <circle cx="16" cy="3" r="1.2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-name">ℒone།&nbsp;&nbsp;Besidℓ<small>番剧视频库 · a quiet archive</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#library" class="active">视频库</a>
+      <a href="#updates">最近更新</a>
+      <a href="#updates">热门</a>
+      <a href="#library" id="navFav">收藏 <span class="nav-fav-n" id="navFavN">0</span></a>
+    </nav>
+    <div class="nav-right">
+      <div class="nav-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="navSearch" type="text" placeholder="搜索系列 / 视频">
+      </div>
+      <button class="btn-primary" id="navUpload">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        上传视频
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-copy reveal">
+      <span class="eyebrow"><span class="pill">LOCAL</span> 镜边的放映室 · 只属于你</span>
+      <h1>把喜欢的番剧，<br>收进<span class="h1-em">镜边</span>的抽屉里</h1>
+      <p class="hero-sub">视频上传即入库，自动归入所属系列；一个系列一张总封面，随时可以换。播放、下载、评论、点赞与收藏，都安静地留在你自己的浏览器里。</p>
+
+      <div class="hero-search">
+        <div class="field">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="heroSearch" type="text" placeholder="搜索番剧、原名、标签或视频…">
+          <button class="go" id="heroGo">
+            <span>搜索</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <div class="quick-tags">
+          <em>试试：</em>
+          <button data-tag="镜">镜のむこう</button>
+          <button data-tag="琥珀">琥珀信笺</button>
+          <button data-tag="剧场版">剧场版</button>
+          <button data-tag="">全部系列</button>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-primary" id="heroUpload">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+          上传我的视频
+        </button>
+        <a href="#library" class="btn-ghost">浏览视频库
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat"><b id="statSeries">0</b><span>在库系列</span></div>
+        <div class="stat"><b id="statVideos">0</b><span>收录视频</span></div>
+        <div class="stat"><b id="statFavs">0</b><span>我的收藏</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="mirror">
+        <div class="mirror-inner">
+          <img src="assets/wallpaper.png" alt="ℒone།  Besidℓ 壁纸">
+          <span class="mirror-quote">くぱ…どのって<br>奥いんだ…</span>
+        </div>
+        <div class="mirror-foot"><span></span><em>a place beside the mirror</em><span></span></div>
+      </div>
+
+      <div class="float-chip chip-1">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M6 11l6-6 6 6"/><path d="M4 21h16"/></svg>
+        </span>
+        <div>上传即入库<small>MP4 / WebM · 可多选</small></div>
+      </div>
+      <div class="float-chip chip-2">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="13" rx="2.5"/><path d="M10 9l5 2.5-5 2.5z" fill="currentColor"/></svg>
+        </span>
+        <div>原画播放<small>本地直读 · 可拖动</small></div>
+      </div>
+      <div class="float-chip chip-3">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h3l2-3h6l2 3h3v11H4V8z"/><circle cx="12" cy="13" r="3.2"/></svg>
+        </span>
+        <div>系列一张封面<small>随时更换</small></div>
+      </div>
+
+      <div class="mini-store">
+        <div class="row"><span>本地存储</span><b id="storePct">--</b></div>
+        <div class="bar"><i id="storeBar"></i></div>
+        <div class="meta"><span id="storeUsed">--</span><span>IndexedDB · 浏览器内</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section class="section" id="library">
+    <div class="section-head reveal">
+      <div class="section-title">
+        <span class="idx">01</span>
+        <div><h2>视频库 <em>Series Library</em></h2></div>
+      </div>
+      <a class="link-more" href="#updates">最近更新
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <div class="toolbar reveal">
+      <div class="chips" id="catChips">
+        <button class="chip active" data-cat="全部">全部<span class="n" id="cntAll">0</span></button>
+        <button class="chip" data-cat="有视频">有视频<span class="n" id="cntHas">0</span></button>
+        <button class="chip" data-cat="暂无视频">暂无视频<span class="n" id="cntEmpty">0</span></button>
+        <button class="chip" data-cat="我的收藏">我的收藏<span class="n" id="cntFav">0</span></button>
+      </div>
+      <div class="toolbar-right">
+        <span class="result-count">共 <b id="resultCount">0</b> 个系列</span>
+        <div class="sort-wrap">
+          <button class="sort-btn" id="sortBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M7 12h10M10 17h4"/></svg>
+            <span id="sortLabel">最近更新</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="sort-menu" id="sortMenu">
+            <button data-sort="new" class="on">最近更新</button>
+            <button data-sort="videos">视频最多</button>
+            <button data-sort="hot">最受欢迎</button>
+            <button data-sort="name">名称排序</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">
+      <b>还没有匹配的系列</b>
+      换个筛选条件，或者上传第一支视频。
+      <div><button class="btn-primary" data-upload>上传视频</button></div>
+    </div>
+  </section>
+
+  <!-- UPDATES + RANK -->
+  <section class="section" id="updates">
+    <div class="section-head reveal">
+      <div class="section-title">
+        <span class="idx">02</span>
+        <div><h2>最近更新 <em>Latest &amp; Popular</em></h2></div>
+      </div>
+      <span class="link-more" style="cursor:default" id="latestHint">—</span>
+    </div>
+    <div class="duo">
+      <div class="panel reveal">
+        <div class="panel-head"><h3>新片速递</h3><span>按上传时间排序</span></div>
+        <div id="updateList"></div>
+      </div>
+      <div class="panel reveal">
+        <div class="panel-head"><h3>热门播放</h3><span>按播放量排序</span></div>
+        <div id="rankList"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-orn"><span></span><i>✦</i><span></span></div>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <a class="brand" href="#">
+        <span class="brand-mark">
+          <svg width="21" height="21" viewBox="0 0 32 32" fill="none">
+            <path d="M16 4.6c4.9 0 7.8 3.3 7.8 7.6V28H8.2V12.2c0-4.3 2.9-7.6 7.8-7.6z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12.6 13.4v9.2l7.4-4.6z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-name">ℒone།&nbsp;&nbsp;Besidℓ<small>番剧视频库 · a quiet archive</small></span>
+      </a>
+      <p>本地优先的番剧收藏站。视频与封面保存在浏览器的 IndexedDB 中，不上传网络；换浏览器或清理站点数据会丢失，重要文件请同时保留原片。</p>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col">
+        <h5>浏览</h5>
+        <a href="#library">视频库</a>
+        <a href="#updates">最近更新</a>
+        <a href="#updates">热门播放</a>
+      </div>
+      <div class="foot-col">
+        <h5>操作</h5>
+        <button data-upload>上传视频</button>
+        <button id="footFav">我的收藏</button>
+        <button id="footHelp">使用说明</button>
+      </div>
+      <div class="foot-col">
+        <h5>关于</h5>
+        <a href="#">关于本站</a>
+        <a href="#">隐私说明</a>
+        <a href="#">反馈建议</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <span>© 2026 ℒone།  Besidℓ · 本地演示</span>
+    <span>beside the mirror, quietly ✦</span>
+  </div>
+</footer>
+
+<!-- hidden inputs -->
+<input type="file" id="coverInput" accept="image/*" hidden>
+<input type="file" id="videoInput" accept="video/*" multiple hidden>
+<input type="file" id="nsCover" accept="image/*" hidden>
+
+<!-- scrim -->
+<div class="scrim" id="scrim"></div>
+
+<!-- SERIES DRAWER -->
+<aside class="drawer" id="seriesDrawer" aria-hidden="true"></aside>
+
+<!-- UPLOAD DRAWER -->
+<aside class="drawer" id="uploadDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <button class="drawer-close" data-close-drawer aria-label="关闭">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="drawer-title">
+      <h3>上传视频</h3>
+      <div class="sub">文件写入浏览器本地存储，不会上传到网络</div>
+      <div class="tags"><span class="green">本地保存</span><span>自动分集</span><span>可下载</span></div>
+    </div>
+  </div>
+  <div class="drawer-body">
+    <div class="up-field">
+      <div class="up-label">视频文件</div>
+      <div class="drop" id="drop">
+        <span class="d-ico">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </span>
+        <b>点击选择视频，或拖拽到此处</b>
+        <small>支持 MP4 / WebM / MKV 等，可多选，自动按顺序分集</small>
+      </div>
+      <div id="fileList"></div>
+    </div>
+
+    <div class="up-field">
+      <div class="up-label">归属系列</div>
+      <select class="field-select" id="seriesSelect"></select>
+      <div class="new-series hidden" id="newSeriesFields">
+        <div class="up-field">
+          <div class="up-label">系列名称 *</div>
+          <input class="field-input" id="nsTitle" placeholder="例如：镜のむこう">
+        </div>
+        <div class="row-2">
+          <div class="up-field">
+            <div class="up-label">原名</div>
+            <input class="field-input" id="nsOriginal" placeholder="可选">
+          </div>
+          <div class="up-field">
+            <div class="up-label">标签</div>
+            <input class="field-input" id="nsTags" placeholder="奇幻, 治愈">
+          </div>
+        </div>
+        <div class="up-field">
+          <div class="up-label">简介</div>
+          <textarea class="field-input" id="nsDesc" rows="2" placeholder="可选，会显示在播放页"></textarea>
+        </div>
+        <div class="up-field">
+          <div class="up-label">封面</div>
+          <button class="cover-pick" id="pickCoverBtn" type="button">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h3l2-3h6l2 3h3v11H4V8z"/><circle cx="12" cy="13" r="3.2"/></svg>
+            选择封面图片
+          </button>
+          <span id="nsCoverName">未选择，之后也可更换</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="up-note">上传后可随时在系列里更换封面、播放或下载。若浏览器提示空间不足，先删除不需要的视频。</div>
+  </div>
+  <div class="drawer-foot">
+    <div class="sum">
+      <div class="l"><small>待上传</small><b id="pendingCount">0 个文件</b></div>
+      <div class="r"><small>合计大小</small><b id="pendingSize">0 B</b></div>
+    </div>
+    <button class="cta" id="uploadSubmit">上传并加入系列</button>
+    <div class="hint" id="uploadHint">选择视频后即可上传</div>
+  </div>
+</aside>
+
+<!-- WATCH -->
+<div class="watch" id="watch">
+  <div class="watch-top">
+    <button class="watch-back" id="watchBack">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>
+      返回系列
+    </button>
+    <div class="watch-crumb"><b id="wSeries">—</b><span class="dot"></span><span id="wEp">—</span></div>
+    <button class="watch-close" id="watchClose" aria-label="关闭">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="watch-body">
+    <div class="watch-stage">
+      <div class="stage-box"><video id="player" controls playsinline preload="metadata"></video></div>
+      <div class="watch-under">
+        <div>
+          <h2 id="wTitle">—</h2>
+          <p id="wMeta">—</p>
+        </div>
+        <div class="watch-actions">
+          <button class="w-act" id="wLike">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.6-9.2-8.4C.9 8 2.6 4.5 6.2 4.5c2 0 3.4 1.1 4.3 2.4.9-1.3 2.3-2.4 4.3-2.4 3.6 0 5.3 3.5 3.4 7.1C19 15.4 12 20 12 20z"/></svg>
+            点赞 <b id="wLikeN">0</b>
+          </button>
+          <button class="w-act fav" id="wFav">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18l-6-4-6 4V3z"/></svg>
+            <span id="wFavTxt">收藏</span>
+          </button>
+          <button class="w-act" id="wDownload">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+            下载
+          </button>
+        </div>
+      </div>
+    </div>
+    <aside class="watch-side">
+      <div class="side-series">
+        <div class="mini-cover" id="wCover"></div>
+        <div>
+          <h4 id="wSeriesName">—</h4>
+          <p id="wSeriesDesc">—</p>
+        </div>
+      </div>
+      <div class="side-block">
+        <div class="side-head"><h4>剧集</h4><span id="wEpsCount">0 集</span></div>
+        <div class="ep-strip" id="wEpList"></div>
+      </div>
+      <div class="comments-block">
+        <div class="side-head" style="padding:15px 20px 0"><h4>评论</h4><span id="wCommentCount"></span></div>
+        <div class="comment-list" id="commentList"></div>
+        <form class="comment-form" id="commentForm">
+          <input id="commentInput" maxlength="200" placeholder="说点什么…" autocomplete="off">
+          <button type="submit">发送</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<button class="upload-fab" id="uploadFab">
+  <span class="ring">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+  </span>
+  上传视频
+</button>
+
+<div class="toast" id="toast"><i>✦</i><span id="toastText">已完成</span></div>
+
+<!-- fallback notice for file:// -->
+<div class="notice" id="notice">
+  <div class="notice-card">
+    <span class="notice-orn">✦</span>
+    <h2>请用「启动网站.bat」打开</h2>
+    <p>浏览器直接打开 HTML 文件时（<code>file://</code>）无法保存视频。此站需要本地服务才能上传、播放与下载。</p>
+    <div class="notice-steps">
+      <div><b>1</b><span>打开文件夹 <code>D:\所有下载的位置\原版图片\lone-beside</code></span></div>
+      <div><b>2</b><span>双击 <b>启动网站.bat</b>，会自动打开 <code>http://127.0.0.1:8765</code></span></div>
+      <div><b>3</b><span>之后都从这个地址进入；关闭黑色窗口即停止服务</span></div>
+    </div>
+    <small>需要 Python 3。视频保存在浏览器本地，请固定使用同一浏览器与地址，数据才不会“消失”。</small>
+  </div>
+</div>
+
+<script src="assets/db.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/watch.js"></script>
+<script src="assets/upload.js"></script>
+</body>
+</html>
